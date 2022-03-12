@@ -57,3 +57,16 @@ export async function changeartStatus(article: Article){
         console.log(err);
     }
 }
+
+export async function updateArticle(article:Article) {
+    try{
+        await api.updateArticle(article._id,article);
+        const action:ArticleAction={
+            type:actions.ArticleUpdated,
+            articles:[article]
+        }
+        store.dispatch(action)
+    }catch(err){
+        console.log(err);
+    }
+}

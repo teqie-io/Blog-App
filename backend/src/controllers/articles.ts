@@ -12,6 +12,17 @@ export const getArticles= async(req:Request,res:Response)=>{
     }
 }
 
+export const getArticleById= async(req:Request,res:Response)=>{
+    const {id}=req.params;
+    if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No Post with Id: ${id}`);
+    try{
+        const article = await ArticleModel.findById(id);
+        res.status(200).json(article);
+    }catch(err){
+        res.status(404).json({message: err.message});
+    }
+}
+
 export const addArticle= async(req:Request,res:Response)=>{
     const {tid, heading, body, published}=req.body;
 
@@ -40,6 +51,17 @@ export const changeStatusArticle=async(req:Request,res:Response)=>{
     const article = await ArticleModel.findById(id);
 
     const updatedArticle= await ArticleModel.findByIdAndUpdate(id,{published:!article.published},{new:true});
+
+    res.json(updatedArticle);
+}
+
+export const updateArticle=async(req:Request,res:Response)=>{
+    const {id}=req.params;
+    const {tid, heading, body, published}=req.body;
+
+    if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No Post with Id: ${id}`);
+
+    const updatedArticle= await ArticleModel.findByIdAndUpdate(id,{heading, body, published},{new:true});
 
     res.json(updatedArticle);
 }

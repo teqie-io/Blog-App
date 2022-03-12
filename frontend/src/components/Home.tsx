@@ -2,7 +2,7 @@ import React from 'react';
 import './styles/Home.css';
 import store from "../store/store"
 import {fetchAll} from "../store/actionCreateDispatch"
-import ArticleCom from './Article';
+import ArticlePrev from './Articlepreview';
 
 class Home extends React.Component<{},{articles:Article[]}>{
   unsubscribe?:Function;
@@ -27,7 +27,7 @@ class Home extends React.Component<{},{articles:Article[]}>{
   render(){
     return(
     <>
-      {this.state.articles.map(article=><ArticleCom article={article}></ArticleCom>)}
+      {this.state.articles.map(article=><ArticlePrev key={article._id} article={article}></ArticlePrev>)}
     </>
   );
   }

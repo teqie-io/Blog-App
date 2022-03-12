@@ -1,6 +1,5 @@
 import * as actions from "./actionTypes"
 
-let lastId:number = 2
 const initialState:StoreInit={
   userId:0,
   articles:[]
@@ -32,6 +31,13 @@ export default function reducer(state:StoreInit=initialState,action:ArticleActio
               ...state,
               articles:state.articles.map(article=>article._id!==action.articles[0]._id?article:{...article,published:!article.published})
             }
+
+        case actions.ArticleUpdated:
+          const {heading,body,published}=action.articles[0];
+          return {
+            ...state,
+            articles:state.articles.map(article=>article._id!==action.articles[0]._id?article:{...article,heading,body,published})
+          }
 
         default:
             return state

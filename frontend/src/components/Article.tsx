@@ -1,20 +1,35 @@
-import React from "react";
-import { changeartStatus, removeArticle } from '../store/actionCreateDispatch';
+import {useEffect, useState} from "react";
+import { useParams } from "react-router-dom";
+import {removeArticle, changeartStatus} from "../store/actionCreateDispatch";
+import * as api from "../api/articles"
 
-class ArticleCom extends React.Component<{article:Article},{}>{
-    constructor(props:{article:Article}){
-        super(props);
+function ArticleCom(){
+    const [article,setArticle]=useState({_id:0,heading:"",body:"",published:undefined});
+    const {id} = useParams();
+    const update = async ()=>{
+        try{
+            const {data}= await api.getArticleById(id);
+            console.log(data);
+            setArticle(data);
+        }catch(err){
+            console.log(err);
+        }
+        
     }
-    render(){
-        return(
+    useEffect(()=>{
+        // api.getArticleById(id)
+        // .then(res=>{setArticle(res.data)})
+        // .catch(err=>{console.log(err)})
+        update()
+    },[]);
+    return(
         <div>
-            <h2>{this.props.article.heading}</h2>
-            <p>{this.props.article.body}</p><br/>
-            <button onClick={()=>removeArticle(this.props.article)}>Delete</button>
-            <button onClick={()=>changeartStatus(this.props.article)}>{this.props.article.published?"Draft":"Publish"}</button>
+            <h2>{article.heading}</h2>
+            <p>{article.body}</p><br/>
+            <button onClick={()=>removeArticle(article)}>Delete</button>
+            <button onClick={()=>changeartStatus(article)}>{article.published?"Draft":"Publish"}</button>
         </div>
-        );
-    }
+    )
 }
 
 export default ArticleCom;
