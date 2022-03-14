@@ -1,5 +1,5 @@
 import React from "react";
-import { changeartStatus, removeArticle } from '../store/actionCreateDispatch';
+import { changeartStatus, removeArticle } from '../../store/actionCreateDispatch';
 import {Link} from 'react-router-dom';
 
 class ArticlePrev extends React.Component<{article:Article},{}>{

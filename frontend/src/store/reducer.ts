@@ -1,12 +1,12 @@
 import * as actions from "./actionTypes"
 
 const initialState:StoreInit={
-  userId:0,
+  token:'',
   articles:[]
 }
 
 
-export default function reducer(state:StoreInit=initialState,action:ArticleAction):StoreInit{
+export default function reducer(state:StoreInit=initialState,action:any):StoreInit{
     switch(action.type){
       case actions.FetchAll:
         return{
@@ -37,6 +37,13 @@ export default function reducer(state:StoreInit=initialState,action:ArticleActio
           return {
             ...state,
             articles:state.articles.map(article=>article._id!==action.articles[0]._id?article:{...article,heading,body,published})
+          }
+
+        case actions.SetToken:
+          const token=action.token;
+          return{
+            ...state,
+            token
           }
 
         default:

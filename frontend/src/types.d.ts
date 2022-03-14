@@ -11,6 +11,6 @@ type ArticleAction={
 }
 
 type StoreInit={
-    userId:number,
+    token:string,
     articles:Article[]
 }

@@ -35,7 +35,7 @@ export default class Cognito {
     }
   }
 
-  public async signInUser(username: string, password: string): Promise<boolean> {
+  public async signInUser(username: string, password: string): Promise<any> {
     var params = {
       AuthFlow: 'USER_PASSWORD_AUTH', /* required */
       ClientId: this.clientId, /* required */
@@ -47,12 +47,10 @@ export default class Cognito {
     }
 
     try {
-      let data = await this.cognitoIdentity.initiateAuth(params).promise();
-      console.log(data); 
-      return true;
+      let data = await this.cognitoIdentity.initiateAuth(params).promise(); 
+      return {result:true,resdata:data.AuthenticationResult.AccessToken};
     } catch (error) {
-      console.log(error);
-      return false;
+      return {result:false,resdata:""};
     }
   }
 

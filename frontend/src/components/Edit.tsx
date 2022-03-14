@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import {updateArticle} from "../store/actionCreateDispatch";
 import * as api from "../api/articles"
 import {Navigate} from "react-router-dom";
+import NavBar from "./subcomponents/NavBar";
 
 function ArticleCom(){
     const [article,setArticle]=useState({_id:0,heading:"",body:"",published:undefined});
@@ -45,6 +46,8 @@ function ArticleCom(){
     }
 
     return(
+    <>
+    <NavBar></NavBar>
     <div>
         {redirect?<Navigate to='/'></Navigate>:''}
         <form action="/" onSubmit={handleSubmit}>
@@ -53,6 +56,7 @@ function ArticleCom(){
             <input type="submit" value="Submit"/>
         </form>
     </div>
+    </>
     )
 }
 

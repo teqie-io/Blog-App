@@ -4,8 +4,8 @@ import { signUp, signIn, verify, forgotPassword, confirmPassword } from "../cont
 const router = express.Router();
 
 router.post('/signup', validateBody('signUp'), signUp)
-router.post('/signin', validateBody('signIn'), signIn)
 router.post('/verify', validateBody('verify'), verify)
+router.post('/signin', validateBody('signIn'), signIn)
 router.post('/forgot-password', validateBody('forgotPassword'), forgotPassword)
 router.post('/confirm-password', validateBody('confirmPassword'), confirmPassword)
 

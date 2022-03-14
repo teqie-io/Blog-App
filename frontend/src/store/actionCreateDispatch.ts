@@ -70,3 +70,11 @@ export async function updateArticle(article:Article) {
         console.log(err);
     }
 }
+
+export function setToken(token:string){
+    const action:{type: string,token:string}={
+        type:actions.SetToken,
+        token
+    }
+    store.dispatch(action)
+}

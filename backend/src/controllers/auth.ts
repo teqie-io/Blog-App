@@ -39,7 +39,7 @@ export const signIn = (req: Request, res: Response) => {
   let cognitoService = new Cognito();
   cognitoService.signInUser(username, password)
     .then(success => {
-      success ? res.status(200).end() : res.status(400).end()
+      success.result ? res.status(200).json(success.resdata) : res.status(400).end()
     })
 }
 

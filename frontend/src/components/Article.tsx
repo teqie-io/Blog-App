@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import { useParams } from "react-router-dom";
 import {removeArticle, changeartStatus} from "../store/actionCreateDispatch";
 import * as api from "../api/articles"
+import NavBar from "./subcomponents/NavBar";
 
 function ArticleCom(){
     const [article,setArticle]=useState({_id:0,heading:"",body:"",published:undefined});
@@ -23,12 +24,14 @@ function ArticleCom(){
         update()
     },[]);
     return(
+        <><NavBar></NavBar>
         <div>
             <h2>{article.heading}</h2>
             <p>{article.body}</p><br/>
             <button onClick={()=>removeArticle(article)}>Delete</button>
             <button onClick={()=>changeartStatus(article)}>{article.published?"Draft":"Publish"}</button>
         </div>
+        </>
     )
 }
 
