@@ -1,0 +1,26 @@
+
+#addArticle{
+    margin:10px;
+}
+
+#addArticle textarea{
+    display: block;
+    height: 200px;
+    width: 100%;
+
+    margin: 10px;
+    border: 2px solid grey;
+    border-radius: 4px;
+    font-size: 15px;
+}
+
+#addArticle #artheading{
+    height: 50px;
+}
+
+#addArticle #button{
+    margin:0 auto;
+    width: 100px;
+    height:50px;
+    padding: 10px;
+}

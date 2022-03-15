@@ -1,0 +1,43 @@
+
+#articleprev{
+    color:white;
+    background-color: #008297;
+    display: inline-flex;
+    padding:20px;
+    margin:20px;
+    border-radius: 10px;
+    justify-content: space-between;
+}
+
+#articleprev:hover{
+    box-shadow: grey 5px 5px 20px;
+}
+
+#articleprevhu{
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+}
+
+#articleprev img{
+    border-radius: 10px;
+    border:2px solid white;
+    height: 100px;
+
+}
+
+#articleprev button{
+    border-radius: 10px;
+    font-size: 15px;
+    color:white;
+    background-color: gray;
+    padding:10px;
+}
+
+#articleprevbutns{
+    display: inline-flex;
+}
+
+.button{
+    margin:10px 20px  0 20px;
+}

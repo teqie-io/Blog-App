@@ -29,7 +29,9 @@ class Home extends React.Component<{},{articles:Article[]}>{
     return(
     <>
     <NavBar></NavBar>
+    <div id="home">
     {this.state.articles.map(article=><ArticlePrev key={article._id} article={article}></ArticlePrev>)}
+    </div>
     </>
   );
   }

@@ -3,6 +3,7 @@ import { addArticle } from "../store/actionCreateDispatch";
 import {Navigate} from "react-router-dom";
 import NavBar from "./subcomponents/NavBar";
 import store from "../store/store";
+import "./styles/addArt.css"
 
 class AddArt extends React.Component<{},{heading:string,imageUrl:string,body:string,published:boolean,redirect:boolean}>{
 
@@ -45,12 +46,12 @@ class AddArt extends React.Component<{},{heading:string,imageUrl:string,body:str
         return(
             <>
             <NavBar></NavBar>
-            {(store.getState().token.length)<=0 ? <Navigate to='/login'></Navigate>:''}
-            <form action="/" onSubmit={this.handleSubmit}>
-                Heading: <input type="text" value={this.state.heading} onChange={this.updateHeading }></input>
-                Image URL: <input type="text" value={this.state.imageUrl} onChange={this.updateImageUrl }></input>
+            {(store.getState().token.length)<=0 ? <Navigate to='/sign-in'></Navigate>:''}
+            <form id="addArticle" onSubmit={this.handleSubmit}>
+                Heading: <textarea id="artheading" value={this.state.heading} onChange={this.updateHeading }/>
+                Image URL: <input type="text" value={this.state.imageUrl} onChange={this.updateImageUrl }/>
                 Body: <textarea value={this.state.body} onChange={this.updateBody}></textarea>
-                <input type="submit" value="Submit"/>
+                <input id="button" type="submit" value="Submit"/>
             </form>
             </>
         ); 

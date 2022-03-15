@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import {removeArticle, changeartStatus} from "../store/actionCreateDispatch";
 import * as api from "../api/articles"
 import NavBar from "./subcomponents/NavBar";
+import "./styles/article.css"
 
 function ArticleCom(){
     const [article,setArticle]=useState({_id:0,username:"",imageUrl:"",heading:"",body:"",published:undefined});
@@ -25,14 +26,11 @@ function ArticleCom(){
     },[]);
     return(
         <><NavBar></NavBar>
-        <div>
-
-            <h2>{article.heading}</h2>
-            <p>Author: {article.username}</p>
+        <div id="viewmorearticle">
+            <h2 id="artheading">{article.heading}</h2>
             <img src={article.imageUrl}></img>
-            <p>{article.body}</p><br/>
-            <button onClick={()=>removeArticle(article)}>Delete</button>
-            <button onClick={()=>changeartStatus(article)}>{article.published?"Draft":"Publish"}</button>
+            <p>Author: {article.username}</p>
+            <p id="artbody">{article.body}</p><br/>
         </div>
         </>
     )

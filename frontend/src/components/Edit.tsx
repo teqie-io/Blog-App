@@ -5,6 +5,7 @@ import * as api from "../api/articles"
 import {Navigate} from "react-router-dom";
 import NavBar from "./subcomponents/NavBar";
 import store from "../store/store";
+import "./styles/addArt.css"
 
 function ArticleCom(){
     const [article,setArticle]=useState({_id:0,imageUrl:"", username:"",heading:"",body:"",published:undefined});
@@ -51,12 +52,12 @@ function ArticleCom(){
     <NavBar></NavBar>
     <div>
         {redirect?<Navigate to='/myarticles'></Navigate>:''}
-        {(store.getState().token.length)<=0 ? <Navigate to='/login'></Navigate>:''}
-        <form action="/" onSubmit={handleSubmit}>
-            Heading: <input type="text" name="heading" value={article.heading} onChange={handleChange }></input>
-            Image URL: <input type="text" name="imageUrl" value={article.imageUrl} onChange={handleChange }></input>
+        {(store.getState().token.length)<=0 ? <Navigate to='/sign-in'></Navigate>:''}
+        <form id="addArticle" action="/" onSubmit={handleSubmit}>
+            Heading: <textarea id="artheading" name="heading" value={article.heading} onChange={handleChange }/>
+            Image URL: <textarea name="imageUrl" value={article.imageUrl} onChange={handleChange }/>
             Body: <textarea name="body" value={article.body} onChange={handleChange}></textarea>
-            <input type="submit" value="Submit"/>
+            <input id="button" type="submit" value="Submit"/>
         </form>
     </div>
     </>

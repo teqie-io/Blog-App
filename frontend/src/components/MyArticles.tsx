@@ -40,8 +40,9 @@ export default function MyArticles(){
   return(
     <>
     <NavBar></NavBar>
-    
+    <div id="home">
     {logged()?(articles.map(article=>(article.username==decodedToken.username)?<MyArticlePrev key={article._id} article={article}></MyArticlePrev>:'')):''}
+    </div>
     </>
   );
 }
