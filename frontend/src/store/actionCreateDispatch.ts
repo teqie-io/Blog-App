@@ -31,7 +31,7 @@ export async function addArticle(article: Article){
 export async function removeArticle(article: Article){
     try{
         const {data}=await api.removeArticle(article._id);
-        console.log(data);
+        
         const action:ArticleAction= {
             type:actions.ArticleRemoved,
             articles:[article]

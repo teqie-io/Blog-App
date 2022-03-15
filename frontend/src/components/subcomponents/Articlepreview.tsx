@@ -10,7 +10,7 @@ class ArticlePrev extends React.Component<{article:Article},{}>{
         return(
         <div>
             <h2>{this.props.article.heading}</h2>
-            <p>{this.props.article.body}</p><br/>
+            <img src={this.props.article.imageUrl}></img>
             <p>Author: {this.props.article.username}</p>
             <button onClick={()=>removeArticle(this.props.article)}>Delete</button>
             <button onClick={()=>changeartStatus(this.props.article)}>{this.props.article.published?"Draft":"Publish"}</button>

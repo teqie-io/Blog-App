@@ -25,10 +25,10 @@ export const getArticleById= async(req:Request,res:Response)=>{
 }
 
 export const addArticle= async(req:Request,res:Response)=>{
-    const {token, heading, body, published}=req.body;
+    const {token,imageUrl, heading, body, published}=req.body;
     const username = getUsername(token);
 
-    const newArticle =  new ArticleModel({ username, heading, body, published});
+    const newArticle =  new ArticleModel({ username, imageUrl,heading, body, published});
     try{
         await newArticle.save();
         res.status(201).json(newArticle);
@@ -80,7 +80,7 @@ export const changeStatusArticle=async(req:Request,res:Response)=>{
 
 export const updateArticle=async(req:Request,res:Response)=>{
     const {id}=req.params;
-    const {token, heading, body, published}=req.body;
+    const {token, imageUrl, heading, body, published}=req.body;
     
     if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No Post with Id: ${id}`);
 
@@ -88,7 +88,7 @@ export const updateArticle=async(req:Request,res:Response)=>{
         const article = await ArticleModel.findById(id);
         
         if(article.username==getUsername(token)){
-            const updatedArticle= await ArticleModel.findByIdAndUpdate(id,{heading, body, published},{new:true});
+            const updatedArticle= await ArticleModel.findByIdAndUpdate(id,{imageUrl, heading, body, published},{new:true});
             res.json(updatedArticle);
         }else{
             res.status(404).json({message: "notAllowed"});

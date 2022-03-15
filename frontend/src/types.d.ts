@@ -1,6 +1,7 @@
 type Article={
     _id: any
     username: string
+    imageUrl: string
     heading: string
     body: string
     published?: boolean

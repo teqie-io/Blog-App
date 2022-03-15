@@ -33,10 +33,10 @@ export default function reducer(state:StoreInit=initialState,action:any):StoreIn
             }
 
         case actions.ArticleUpdated:
-          const {heading,body,published}=action.articles[0];
+          const {imageUrl, heading,body,published}=action.articles[0];
           return {
             ...state,
-            articles:state.articles.map(article=>article._id!==action.articles[0]._id?article:{...article,heading,body,published})
+            articles:state.articles.map(article=>article._id!==action.articles[0]._id?article:{...article,imageUrl, heading,body,published})
           }
 
         case actions.SetToken:

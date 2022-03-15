@@ -6,7 +6,7 @@ import {Navigate} from "react-router-dom";
 import NavBar from "./subcomponents/NavBar";
 
 function ArticleCom(){
-    const [article,setArticle]=useState({_id:0,username:"",heading:"",body:"",published:undefined});
+    const [article,setArticle]=useState({_id:0,imageUrl:"", username:"",heading:"",body:"",published:undefined});
     const [redirect,setRedirect]=useState(false);
 
     const {id} = useParams();
@@ -52,6 +52,7 @@ function ArticleCom(){
         {redirect?<Navigate to='/'></Navigate>:''}
         <form action="/" onSubmit={handleSubmit}>
             Heading: <input type="text" name="heading" value={article.heading} onChange={handleChange }></input>
+            Image URL: <input type="text" name="imageUrl" value={article.imageUrl} onChange={handleChange }></input>
             Body: <textarea name="body" value={article.body} onChange={handleChange}></textarea>
             <input type="submit" value="Submit"/>
         </form>
