@@ -9,11 +9,13 @@ import SignUP from './components/SignUp';
 import SignIn from './components/SignIn';
 import Verify from './components/Verify';
 import Forgot from './components/forgot';
+import MyArticles from './components/MyArticles';
 
 ReactDOM.render(
     <Router>
       <Routes>
         <Route path="/" element={<Home/>}/>
+        <Route path="/myarticles" element={<MyArticles/>}/>
         <Route path="/addarticle" element={<AddArt/>}/>
         <Route path="/article/:id" element={<Article/>}/>
         <Route path="/edit/:id" element={<Edit/>}/>

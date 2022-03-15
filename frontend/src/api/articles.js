@@ -4,11 +4,11 @@ import store from "../store/store";
 const url = "http://localhost:5000/articles";
 
 function getToken(){
-    console.log(store.getState().token);
     return store.getState().token;
 }
 
 export const fetchArticles = ()=> axios.get(url);
+export const getMyArticles = ()=> axios.post(`${url}/myarticles`,{token:getToken()});
 export const getArticleById = (id)=>axios.get(`${url}/${id}`);
 export const addArticle = (newArticle)=>axios.post(url, {...newArticle,token:getToken()});
 export const removeArticle = (id)=>axios.patch(`${url}/remove/${id}`,{token:getToken()});

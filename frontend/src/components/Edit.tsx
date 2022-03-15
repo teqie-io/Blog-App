@@ -4,6 +4,7 @@ import {updateArticle} from "../store/actionCreateDispatch";
 import * as api from "../api/articles"
 import {Navigate} from "react-router-dom";
 import NavBar from "./subcomponents/NavBar";
+import store from "../store/store";
 
 function ArticleCom(){
     const [article,setArticle]=useState({_id:0,imageUrl:"", username:"",heading:"",body:"",published:undefined});
@@ -49,7 +50,8 @@ function ArticleCom(){
     <>
     <NavBar></NavBar>
     <div>
-        {redirect?<Navigate to='/'></Navigate>:''}
+        {redirect?<Navigate to='/myarticles'></Navigate>:''}
+        {(store.getState().token.length)<=0 ? <Navigate to='/login'></Navigate>:''}
         <form action="/" onSubmit={handleSubmit}>
             Heading: <input type="text" name="heading" value={article.heading} onChange={handleChange }></input>
             Image URL: <input type="text" name="imageUrl" value={article.imageUrl} onChange={handleChange }></input>

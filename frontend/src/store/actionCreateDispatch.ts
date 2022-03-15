@@ -4,7 +4,14 @@ import * as api from "../api/articles"
 
 export async function fetchAll(){
     try{
-        const {data}= await api.fetchArticles();
+        let {data}= await api.fetchArticles();
+        if((store.getState().token.length)>0){
+            let mydata;
+            await api.getMyArticles()
+            .then(res=>mydata=res.data)
+            .catch(err=>console.log(err));
+            data=data.concat(mydata)
+        }
         const action={
             type:actions.FetchAll,
             articles:data

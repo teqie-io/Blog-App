@@ -23,10 +23,10 @@ class AuthMiddleware {
       resp.status(401).end()
       return
     }
-    console.log(decodedJwt)
+    
     let kid = decodedJwt.header.kid;
     let pem = pems[kid];
-    console.log(pem)
+    
     if (!pem) {
       resp.status(401).end()
       return

@@ -6,7 +6,21 @@ import getUsername from "./function/getusername";
 
 export const getArticles= async(req:Request,res:Response)=>{
     try{
-        const articles = await ArticleModel.find();
+        const articles = await ArticleModel.find({published:true});
+        console.log("getArticles");
+        res.status(200).json(articles);
+    }catch(err){
+        res.status(404).json({message: err.message});
+    }
+}
+
+export const getMyArticles= async(req:Request,res:Response)=>{
+    const {token}=req.body;
+    const username=getUsername(token);
+    console.log("getMYArticles");
+    try{
+        const articles = await ArticleModel.find({username,published:false});
+        console.log(articles);
         res.status(200).json(articles);
     }catch(err){
         res.status(404).json({message: err.message});

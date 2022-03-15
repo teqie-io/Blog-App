@@ -12,7 +12,10 @@ class ArticlePrev extends React.Component<{article:Article},{}>{
             <h2>{this.props.article.heading}</h2>
             <img src={this.props.article.imageUrl}></img>
             <p>Author: {this.props.article.username}</p>
+            <button onClick={()=>removeArticle(this.props.article)}>Delete</button>
+            <button onClick={()=>changeartStatus(this.props.article)}>{this.props.article.published?"Draft":"Publish"}</button>
             <Link to={`/article/${this.props.article._id}`}><button>View More</button></Link>
+            <Link to={`/edit/${this.props.article._id}`}><button>Edit</button></Link>
         </div>
         );
     }
