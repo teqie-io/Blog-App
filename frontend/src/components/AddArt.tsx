@@ -20,7 +20,7 @@ class AddArt extends React.Component<{},{heading:string,body:string,published:bo
 
 
     handleSubmit(event:any){
-        addArticle({_id:0,...this.state});
+        addArticle({_id:0,username:'',...this.state});
         event.preventDefault();
         this.setState({redirect:true});
     }

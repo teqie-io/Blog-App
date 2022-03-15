@@ -6,7 +6,7 @@ import {Navigate} from "react-router-dom";
 import NavBar from "./subcomponents/NavBar";
 
 function ArticleCom(){
-    const [article,setArticle]=useState({_id:0,heading:"",body:"",published:undefined});
+    const [article,setArticle]=useState({_id:0,username:"",heading:"",body:"",published:undefined});
     const [redirect,setRedirect]=useState(false);
 
     const {id} = useParams();

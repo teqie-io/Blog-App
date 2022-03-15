@@ -15,7 +15,7 @@ class AuthMiddleware {
 
   public verifyToken(req: Request, resp: Response, next) {
     const { token } = req.body;
-    console.log(token);
+    
     if (!token) return resp.status(401).end();
 
     let decodedJwt: any = jwt.decode(token, { complete: true });
@@ -68,4 +68,4 @@ class AuthMiddleware {
   }
 }
 
-export default AuthMiddleware
+export default AuthMiddleware;

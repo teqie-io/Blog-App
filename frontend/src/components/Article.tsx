@@ -5,7 +5,7 @@ import * as api from "../api/articles"
 import NavBar from "./subcomponents/NavBar";
 
 function ArticleCom(){
-    const [article,setArticle]=useState({_id:0,heading:"",body:"",published:undefined});
+    const [article,setArticle]=useState({_id:0,username:"",heading:"",body:"",published:undefined});
     const {id} = useParams();
     const update = async ()=>{
         try{
@@ -28,6 +28,7 @@ function ArticleCom(){
         <div>
             <h2>{article.heading}</h2>
             <p>{article.body}</p><br/>
+            <p>Author: {article.username}</p>
             <button onClick={()=>removeArticle(article)}>Delete</button>
             <button onClick={()=>changeartStatus(article)}>{article.published?"Draft":"Publish"}</button>
         </div>

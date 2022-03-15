@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import {Request, Response } from "express";
 import ArticleModel from "../models/articleModel";
+import getUsername from "./function/getusername";
 
 
 export const getArticles= async(req:Request,res:Response)=>{
@@ -24,9 +25,10 @@ export const getArticleById= async(req:Request,res:Response)=>{
 }
 
 export const addArticle= async(req:Request,res:Response)=>{
-    const {tid, heading, body, published}=req.body;
+    const {token, heading, body, published}=req.body;
+    const username = getUsername(token);
 
-    const newArticle =  new ArticleModel({ heading, body, published});
+    const newArticle =  new ArticleModel({ username, heading, body, published});
     try{
         await newArticle.save();
         res.status(201).json(newArticle);
@@ -37,31 +39,61 @@ export const addArticle= async(req:Request,res:Response)=>{
 
 export const removeArticle=async(req:Request,res:Response)=>{
     const {id}=req.params;
+    const {token}=req.body;
+    
     if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No Post with Id: ${id}`);
+    
+    try{
+        const article = await ArticleModel.findById(id);
+        
+        if(article.username==getUsername(token)){
+            await ArticleModel.findByIdAndDelete(id);
+            res.json({message: "Article Removed successfully."});
+        }else{
+            res.status(404).json({message: "notAllowed"});
+        }
+    }catch(err){
+        res.status(404).json({message: err.message});
+    }
 
-    await ArticleModel.findByIdAndDelete(id);
-
-    res.json({message: "Article Removed successfully."});
 }
 
 export const changeStatusArticle=async(req:Request,res:Response)=>{
     const {id}=req.params;
+    const {token}=req.body;
+
     if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No Post with Id: ${id}`);
 
-    const article = await ArticleModel.findById(id);
-
-    const updatedArticle= await ArticleModel.findByIdAndUpdate(id,{published:!article.published},{new:true});
-
-    res.json(updatedArticle);
+    try{
+        const article = await ArticleModel.findById(id);
+        
+        if(article.username==getUsername(token)){
+            const updatedArticle= await ArticleModel.findByIdAndUpdate(id,{published:!article.published},{new:true});
+            res.json(updatedArticle);
+        }else{
+            res.status(404).json({message: "notAllowed"});
+        }
+    }catch(err){
+        res.status(404).json({message: err.message});
+    }
 }
 
 export const updateArticle=async(req:Request,res:Response)=>{
     const {id}=req.params;
-    const {tid, heading, body, published}=req.body;
-
+    const {token, heading, body, published}=req.body;
+    
     if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No Post with Id: ${id}`);
 
-    const updatedArticle= await ArticleModel.findByIdAndUpdate(id,{heading, body, published},{new:true});
-
-    res.json(updatedArticle);
+    try{
+        const article = await ArticleModel.findById(id);
+        
+        if(article.username==getUsername(token)){
+            const updatedArticle= await ArticleModel.findByIdAndUpdate(id,{heading, body, published},{new:true});
+            res.json(updatedArticle);
+        }else{
+            res.status(404).json({message: "notAllowed"});
+        }
+    }catch(err){
+        res.status(404).json({message: err.message});
+    }
 }
