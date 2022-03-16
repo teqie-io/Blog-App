@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./styles/LogSignUp.css";
 import * as api from "../api/auth";
-import { Navigate } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
 
 export default function SignUp(){
     const [user,setUser]=useState({username:"",password:"",name : "",family_name : "",email : "",birthdate : ""});
@@ -28,7 +28,7 @@ export default function SignUp(){
     return(
     <main>
         {redirect?<Navigate to={`/verify/${user.username}`}></Navigate>:''}
-        <h1 id="Qheading">Blog <span className="add-color-green">A</span>pp</h1>
+        <h1 id="Qheading"><span>Blog <span className="add-color-green">A</span>pp</span> <Link id="homeuna" to="/">Home</Link></h1>
         <div className="wrapper">
             <h1>Sign UP</h1>
             <form>

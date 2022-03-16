@@ -40,7 +40,8 @@ export default function Login(){
     <main>
         {redirect?<Navigate to='/'></Navigate>:''}
         {redirectft?<Navigate to={`/forgot/${user.username}`}></Navigate>:''}
-        <h1 id="Qheading">Blog <span className="add-color-green">A</span>pp</h1>
+        <h1 id="Qheading"><span>Blog <span className="add-color-green">A</span>pp</span> <Link id="homeuna" to="/">Home</Link></h1>
+        
         <div className="wrapper">
             <h1>SignIn</h1>
             <form>

@@ -10,12 +10,26 @@ body{
 }
 
 #Qheading{
-	width: 450px;
-	margin: auto;
+	width: 100%;
+	margin: 10px auto 0 auto;
+	display: inline-flex;
+	justify-content: space-around;
 	/*border-radius: 10px 10px 0 0 ;*/
 	font-size: 50px;
 	color: #384047;
 	/*background-color: #fff;*/
+}
+
+
+#homeuna{
+    font-size: 20px;
+    color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #000;
+    text-align: center;
+    text-decoration: none;
+    /* margin: auto 0px auto 100px; */
 }
 
 .wrapper{

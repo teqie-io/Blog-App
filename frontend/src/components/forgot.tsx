@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Navigate, useParams } from "react-router-dom";
+import { Navigate, useParams, Link } from "react-router-dom";
 import "./styles/LogSignUp.css";
 import * as api from "../api/auth";
 
@@ -31,7 +31,7 @@ export default function Forgot(){
     return(
     <main>
         {redirect?<Navigate to='/sign-in'></Navigate>:''}
-        <h1 id="Qheading">Blog <span className="add-color-green">A</span>pp</h1>
+        <h1 id="Qheading"><span>Blog <span className="add-color-green">A</span>pp</span> <Link id="homeuna" to="/">Home</Link></h1>
         <div className="wrapper">
             <h1>Set New Password</h1>
             <form>
